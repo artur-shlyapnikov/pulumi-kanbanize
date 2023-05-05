@@ -12,19 +12,6 @@ type Inputs = {
     id?: string;
 };
 
-const isApiKeyValid = (inputs: Inputs) => !inputs.apiKey;
-
-const isBoardDataValid = (inputs: Inputs) => !inputs.boardData;
-
-const validateInputs = (inputs: Inputs) => {
-    if (isApiKeyValid(inputs)) {
-        throw new Error('API key is required.');
-    }
-    if (isBoardDataValid(inputs)) {
-        throw new Error('Board data is required.');
-    }
-};
-
 const createServerConfiguration = async (apiKey: string): Promise<Configuration> => {
     const { createConfiguration, ServerConfiguration } = await import('./kanbanize-client');
     return createConfiguration({
@@ -48,7 +35,6 @@ const createBoardsApiInstance = async (configuration: Configuration): Promise<Ob
 };
 
 const withApi = (action: (boardsApi: ObjectBoardsApi, inputs: Inputs) => Promise<any>) => async (inputs: Inputs) => {
-    // validateInputs(inputs);
     const configuration = await createServerConfiguration(inputs.apiKey);
     const boardsApi = await createBoardsApiInstance(configuration);
     return action(boardsApi, inputs);

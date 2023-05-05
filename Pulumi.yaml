@@ -1,0 +1,3 @@
+name: kanbanize-pulumi-provider
+runtime: nodejs
+description: TS Pulumi Provider

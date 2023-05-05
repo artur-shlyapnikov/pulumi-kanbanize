@@ -1,0 +1,26 @@
+{
+  "name": "kanbanize-pulumi-provider",
+  "version": "0.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "prepack": "run build",
+    "build": "run workspace:ts:build"
+  },
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@pulumi/pulumi": "^3.0.0",
+    "@types/json-bigint": "1.0.0",
+    "@types/node": "^16",
+    "@types/url-parse": "1.4.3",
+    "bignumber.js": "^9.0.0",
+    "fetch-ponyfill": "6.1.1",
+    "json-bigint": "1.0.0",
+    "url-parse": "1.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^16"
+  }
+}

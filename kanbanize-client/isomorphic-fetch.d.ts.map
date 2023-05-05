@@ -1,0 +1,1 @@
+{"version":3,"file":"isomorphic-fetch.d.ts","sourceRoot":"","sources":["../src/isomorphic-fetch.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,cAAc,EAAE,eAAe,EAAE,MAAM,QAAQ,CAAC;AACtE,OAAO,EAAQ,UAAU,EAAE,MAAM,YAAY,CAAC;AAK9C,qBAAa,0BAA2B,YAAW,WAAW;IAEnD,IAAI,CAAC,OAAO,EAAE,cAAc,GAAG,UAAU,CAAC,eAAe,CAAC;CAyBpE"}

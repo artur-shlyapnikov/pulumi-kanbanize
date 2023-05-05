@@ -1,0 +1,3 @@
+config:
+  kanbanize-pulumi-provider:kanbanizeApiKey: bBXafJxiHbKOGAVXMgW4vHlwxUz93pOcJrUmGQtE
+  kanbanize-pulumi-provider:kanbanizeBaseServer: https://acmeinc.kanbanize.com/api/v2

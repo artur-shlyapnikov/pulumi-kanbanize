@@ -33,7 +33,7 @@ const createServerConfiguration = async (apiKey: string): Promise<Configuration>
         promiseMiddleware: [
             {
                 pre: async (req) => {
-                    console.log(req.getHeaders()); // <-- check what you have here
+                    console.log(req.getHeaders());
                     return req;
                 },
                 post: async (resp) => resp,
@@ -107,26 +107,13 @@ class KanbanizeBoard extends pulumi.dynamic.Resource {
 
                 return updateBoard({ ...news, id });
             },
-            // but it doesn't, with the error "API key is required."
+            // but it doesn't, because we don't have the API key in the request
             async delete(id: string, props: Inputs) {
                 debugger;
                 console.log("delete", props);
                 await archiveBoard({ ...props, id });
                 return deleteBoard({ ...props, id });
             },
-            //@ts-ignore
-            //async check() {
-            //  console.log("check")
-            // },
-            //@ts-ignore
-            //async diff() {
-            //  console.log("diff")
-            //},
-            //@ts-ignore
-            async read() {
-                console.log("read")
-            }
-
         };
 
         const props = { apiKey: apiKey.apply(apiKey => apiKey ? apiKey.toString() : undefined), boardData: boardData };
@@ -137,11 +124,16 @@ class KanbanizeBoard extends pulumi.dynamic.Resource {
 
 
 (async () => {
-    // Name of the resource is unique in the scope of the provider instance
-    // so, if you want to create a new resource, you need to change the name
-    // and run `pulumi up` again. In this case previous resource will be deleted
+    // To make sure that the update methods work, you can uncomment the lines below
+
+    // const newBoard = new KanbanizeBoard('VeryNewBoard', {
+    //    name: 'new name',
+    //    workspace_id: 2
+    // }, apiKey);
+
     const anotherBoard = new KanbanizeBoard('BoardInDemoWorkspace', {
         name: 'T',
         workspace_id: 1
     }, apiKey);
+
 })();

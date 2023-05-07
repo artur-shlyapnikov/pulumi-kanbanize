@@ -42,7 +42,7 @@ const withApi = (action: (boardsApi: ObjectBoardsApi, inputs: Inputs) => Promise
 
 const createBoardAction = async (boardsApi: ObjectBoardsApi, inputs: Inputs) => {
     const response = await boardsApi.createBoard({ InlineObject5: inputs.boardData });
-    return { id: response.data.board_id.toString(), outs: inputs.boardData };
+    return { id: response.data.board_id.toString(), outs: { ...inputs.boardData, apiKey: inputs.apiKey } };
 };
 
 const updateBoardAction = async (boardsApi: ObjectBoardsApi, inputs: Inputs) => {
@@ -52,7 +52,7 @@ const updateBoardAction = async (boardsApi: ObjectBoardsApi, inputs: Inputs) => 
     };
     console.log("Updating the board: ", updateRequest);
     const response = await boardsApi.updateBoard(updateRequest);
-    return { outs: response.data };
+    return { outs: { ...response.data, apiKey: inputs.apiKey } };
 };
 
 const archiveBoardAction = async (boardsApi: ObjectBoardsApi, inputs: Inputs) => {
@@ -63,8 +63,9 @@ const archiveBoardAction = async (boardsApi: ObjectBoardsApi, inputs: Inputs) =>
     } else {
         console.log(`Board ${response.data?.name} was archived.`);
     }
-    return { outs: response.data };
+    return { outs: { ...response.data, apiKey: inputs.apiKey } };
 };
+
 
 const deleteBoardAction = async (boardsApi: ObjectBoardsApi, inputs: Inputs) => {
     console.log("Deleting the board: ", inputs.id!)
